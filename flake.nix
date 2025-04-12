@@ -58,7 +58,7 @@
           # Second way, pull in overlay from chn-nixos and then manually set up nixpkgs
           # this way is more flexible, but some packages will not build.
           # For example, vasp compiled using intel oneapi `vasp.intel` needs bscpkgs overlay,
-          #   which is will not work in this way, but works in the first way.
+          #   which will not work in this way, but works in the first way.
           # nixpkgs =
           # {
             # pull in overlay, it will add a package set named `localPackages`
@@ -71,14 +71,14 @@
               # I am not sure if this is necessary, I always set it to true
               # allowUnfree = true;
               # set your cpu micro arch, affecting default stdenv
-              # you may meet some build failures after setting this,
-              #  some patches have been added to my fork of nixpkgs,
+              # you may meet some build failures after setting this.
+              # To resolve this issue, some patches have been added to my fork of nixpkgs,
               #  some could be find in "${inputs.nixos}/modules/system/nixpkgs/buildNixpkgsConfig.nix",
               # hostPlatform = { system = "x86_64-linux"; gcc = { arch = "znver4"; tune = "znver4"; }; };
 
               # cuda support is necessary for nvhpc
               # cudaSupport = true;
-              # it is also **necessary** to set cudaCapabilities, to tell nvhpc build against which gpu
+              # it is also necessary to set cudaCapabilities, to tell nvhpc build against which gpu
               # it should cover all the gpus you will run the code on,
               #   no harm to add more (other than longer build time and larger package size)
               # see https://en.wikipedia.org/wiki/CUDA#GPUs_supported
